@@ -11,26 +11,24 @@ export const registerUser = async ({
   email,
   password,
   confirmPassword,
-  phone,
-  profileImage,
+  // profileImage,
 }) => {
   const { error } = registerValidation.validate({
     username,
     email,
     password,
     confirmPassword,
-    phone,
-    profileImage,
+    // profileImage,
   });
   if (error)
     throw new Error(error.details[0].message);
 
   const existingUser = await User.findOne({
-    $or: [{ email }, { phone }],
+    $or: [{ email }],
   });
   if (existingUser)
     throw new Error(
-      "Email or Phone number already registered."
+      "Email  already registered."
     );
 
   const salt = await bcrypt.genSalt(10);
@@ -43,8 +41,6 @@ export const registerUser = async ({
     username,
     email,
     password: hashedPassword,
-    phone,
-    profileImage: profileImage || "",
   });
 
   await user.save();

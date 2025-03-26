@@ -12,7 +12,6 @@ export const register = async (req, res) => {
       email,
       password,
       confirmPassword,
-      phone,
     } = req.body;
     const profileImage = req.file
       ? req.file.path
@@ -23,12 +22,12 @@ export const register = async (req, res) => {
       email,
       password,
       confirmPassword,
-      phone,
-      profileImage,
+      // profileImage,
     });
 
     res.status(201).json({
       message: "User registered successfully",
+      status: 201,
       user,
     });
   } catch (error) {

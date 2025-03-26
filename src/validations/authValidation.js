@@ -21,14 +21,8 @@ export const registerValidation = Joi.object({
       .messages({
         "any.only": "Passwords must match.",
       }),
-    phone: Joi.string()
-      .pattern(/^\d{10}$/)
-      .required()
-      .messages({
-        "string.pattern.base":
-          "Phone number must be exactly 10 digits.",
-      }),
-    profileImage: Joi.string().optional(),
+
+    // profileImage: Joi.string().optional(),
   });
   
   export const loginValidation = Joi.object({
